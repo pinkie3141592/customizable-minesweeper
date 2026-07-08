@@ -1,12 +1,25 @@
-PROJECT IN FIRST STAGE
+# Customizable Minesweeper
 
-First stage of the project focuses on logic and overal game structure, such as bomb placing algorithms, cell reveal recursive loop, etc.
+## Project Status: First Stage
 
-Second stage will implement a first primitive GUI, focusing only in its functionality, comprehensibility and button placement.
+This project is currently in its first stage. The focus right now is on the core game logic and overall structure, including mine placement algorithms, recursive cell revealing, and board behavior.
 
-Lastly, third stage will polish the GUI and will add some themes.
+## Roadmap
 
-This is a project to practice OOP in java. Figuring out the logic for the cell reveal recursive method and different bomb placing methods was a part of the practice, although dev did research for different algorithms to make the game even more customizable, as the difficulty of the game can change depending on what method is chosen to place the bombs.
+The second stage will implement a primitive GUI focused on functionality, clarity, and button placement.
 
-NOTE: i love this project because of all the different ways you can solve the same problem! 
-How would you resolve the issue of choosing a bomb in your first move? (tons of ways to do that!)
+The third stage will polish the GUI and add customizable themes.
+
+## About the Project
+
+This is a Java OOP practice project. A big part of the learning process was figuring out the logic behind the recursive cell reveal method and experimenting with different mine placement strategies.
+
+The project is designed to be customizable: the difficulty and behavior of the game can change depending on the method chosen to place the mines.
+
+## Note
+
+I love this project because there are so many different ways to solve the same problem.
+
+For example: how would you handle the issue of revealing a mine on the first move?
+
+There are tons of possible solutions!
