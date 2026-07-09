@@ -8,11 +8,11 @@ public class Board{
 
     public boolean gameOver = false;
 
-    public Board(int rows, int columns, double mineChance){
+    public Board(int rows, int columns, int row, int col, double mineChance){
 
         if(mineChance < 0 || mineChance > 1)
             throw new IllegalArgumentException(
-                "mineChance must be between 0 and 1"
+                "mine Chance must be between 0 and 1"
             );
 
         board = new Cell[rows][columns];
@@ -23,8 +23,12 @@ public class Board{
                 board[i][j] = new Cell();
                 board[i][j].revealed = false;
 
-                if(rand.nextDouble() < mineChance)
-                    board[i][j].hasMine = true;
+                if(i == row && j == col)
+                    board[i][j].hasMine = false;
+
+                else
+                    if(rand.nextDouble() < mineChance)
+                        board[i][j].hasMine = true;
             }
         }
 
@@ -60,29 +64,24 @@ public class Board{
 
     public void revealCell(int row, int col){
 
-        // Outside the board
         if(row < 0 || row >= board.length ||
         col < 0 || col >= board[row].length)
             return;
 
-        // Already revealed
         if(board[row][col].revealed)
             return;
 
         board[row][col].revealed = true;
 
-        // Mine -> game over
         if(board[row][col].hasMine){
             System.out.println("GAME OVER.");
             gameOver = true;
             return;
         }
 
-        // If this cell has a number, stop here.
         if(board[row][col].nearbyMines > 0)
             return;
 
-        // Otherwise reveal every neighbor
         for(int dr = -1; dr <= 1; dr++){
             for(int dc = -1; dc <= 1; dc++){
 
@@ -114,41 +113,60 @@ public class Board{
 
     public void printBoard() {
 
-    System.out.print("   ");
-    for (int j = 0; j < board[0].length; j++) {
-        System.out.printf("%2d ", j);
-    }
-    System.out.println();
-
-    System.out.print("   ");
-    for (int j = 0; j < board[0].length; j++) {
-        System.out.print("---");
-    }
-    System.out.println();
-
-    for (int i = 0; i < board.length; i++) {
-
-        System.out.printf("%2d| ", i);
-
-        for (int j = 0; j < board[i].length; j++) {
-
-            if (!board[i][j].revealed) {
-                System.out.print("■  ");
-            }
-            else if (board[i][j].hasMine) {
-                System.out.print("*  ");
-            }
-            else if (board[i][j].nearbyMines == 0) {
-                System.out.print("   ");
-            }
-            else {
-                System.out.print(board[i][j].nearbyMines + "  ");
-            }
+        System.out.print("   ");
+        for (int j = 0; j < board[0].length; j++) {
+            System.out.printf("%2d ", j);
         }
-
         System.out.println();
-    }
-}
 
+        System.out.print("   ");
+        for (int j = 0; j < board[0].length; j++) {
+            System.out.print("---");
+        }
+        System.out.println();
+
+        for (int i = 0; i < board.length; i++) {
+
+            System.out.printf("%2d| ", i);
+
+            for (int j = 0; j < board[i].length; j++) {
+
+                if (!board[i][j].revealed) {
+                    System.out.print("■  ");
+                }
+                else if (board[i][j].hasMine) {
+                    System.out.print("*  ");
+                }
+                else if (board[i][j].nearbyMines == 0) {
+                    System.out.print("   ");
+                }
+                else {
+                    System.out.print(board[i][j].nearbyMines + "  ");
+                }
+            }
+
+            System.out.println();
+        }
+    }
+
+    public boolean isRevealed(int row, int col) {
+        return board[row][col].revealed;
+    }
+
+    public boolean hasMine(int row, int col) {
+        return board[row][col].hasMine;
+    }
+
+    public int getNearbyMines(int row, int col) {
+        return board[row][col].nearbyMines;
+    }
+
+    public int getRows() {
+        return board.length;
+    }
+
+    public int getColumns() {
+        return board[0].length;
+    }
 
 }

@@ -9,11 +9,20 @@ public class Main{
         Scanner input = new Scanner(System.in);
         
         System.out.println("Minesweeper cargando...");
-    
-        Board gameBoard = new Board(8,8, 0.30);
-        
+
+        System.out.print("Select row: ");
+        row = input.nextInt();
+
+        System.out.print("Select column: ");
+        col = input.nextInt();
+
+        Board gameBoard = new Board(8,8, row, col, 0.30);
+
+        gameBoard.revealCell(row, col);
+
         do 
         {
+
             gameBoard.printBoard();
 
             System.out.print("Select row: ");
