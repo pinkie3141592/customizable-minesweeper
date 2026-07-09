@@ -33,7 +33,7 @@ public class Main{
 
             gameBoard.revealCell(row,col);
 
-        }while(!gameBoard.gameOver);
+        }while(!gameBoard.isGameOver());
 
         input.close();
 

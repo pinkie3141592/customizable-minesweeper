@@ -6,7 +6,7 @@ public class Board{
 
     private Cell[][] board;
 
-    public boolean gameOver = false;
+    private boolean gameOver = false;
 
     public Board(int rows, int columns, int row, int col, double mineChance){
 
@@ -64,8 +64,7 @@ public class Board{
 
     public void revealCell(int row, int col){
 
-        if(row < 0 || row >= board.length ||
-        col < 0 || col >= board[row].length)
+        if(row < 0 || row >= board.length || col < 0 || col >= board[row].length)
             return;
 
         if(board[row][col].revealed)
@@ -147,6 +146,23 @@ public class Board{
 
             System.out.println();
         }
+    }
+
+    public void showAllMines(int rows, int columns){
+
+        for(int i =0; i < rows; i ++)
+        {
+            for(int j = 0; j < columns; j++)
+            {
+                board[i][j].revealed = true;
+            }
+        }
+    }
+
+    //getters y setters
+
+    public boolean isGameOver() {
+        return gameOver;
     }
 
     public boolean isRevealed(int row, int col) {
