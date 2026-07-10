@@ -1,6 +1,9 @@
+package GUI;
 import javax.swing.*;
 import java.awt.GridLayout;
 import java.awt.Font;
+import model.Board;
+import model.Cell;
 
 public class MinesweeperGUI extends JFrame {
     
